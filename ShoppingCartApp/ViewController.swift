@@ -42,14 +42,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.textLabel?.text = cart[indexPath.row]
         return cell
     }
+    
+    //doesnt work
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        if(cell?.accessoryType == .checkmark){
-            cell?.accessoryType = .none
-        }else{
-            cell!.accessoryType = .checkmark
-        }
-        self.tableViewOutlet.reloadData()
+        
+    if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+        tableView.cellForRow(at: indexPath)?.accessoryType = .none
+            }
+    else {
+        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            }
+            
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        
     }
     
 
@@ -91,6 +98,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    @IBAction func sortAction(_ sender: UIButton) {
+        cart.sort()
+        for blah in cart{
+            print(blah)
+        }
+        self.tableViewOutlet.reloadData()
+        
+    }
     
     
     
